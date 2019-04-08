@@ -1,0 +1,62 @@
+1.常见的数据库软件
+关系型数据库
+	informix  军、政、运、银  IBM+HP
+	db2       军、政、运、银  IBM  
+	oracle    中大型企业 oracle
+	mysql     互联网公司 oracle
+	sqlserver 微软
+非关系型数据库
+	mongodb   大数据、爬虫
+	redis     缓存、消息队列
+	cassandra 同步   facebook
+2.开源
+	源代码开放，不代表免费
+	gitlab
+	github
+3.mysql的安装
+	3.1 mysql官网下载安装
+	3.2 集成软件安装
+			xampp(X:任意操作系统 a：apache m:mysql p:php p:perl)
+			phpstudy
+4.mysql
+	数据库是有2部分组成:数据库软件、数据库数据
+	常说的数据库是数据库数据
+	数据库是由表组成
+	表是有数据库组成
+5.mysql的服务
+	mysql   mysql的客户端服务
+	mysqld 	mysql的主服务
+	3306    mysql的端口
+	root    mysql的管理员
+	检查服务和端口
+		win：
+		win+r--cmd--tasklist | find "mysqld"
+			tasklist   查看系统进程
+			|          管道，前面的输出作为后面的输入
+			find       搜索
+		mac：
+		终端--ps -ef | grep mysqld
+		    ps -ef  查看系统进程
+		win：
+		win+r--cmd--netstat -an | find "3306"
+		mac:
+		终端--netstat -an|grep 3306
+6.mysql的登录（命令提示符：win+r--cmd）
+	a.登录方式
+		a1.进入到命令所在的文件夹
+			d：
+			cd phpStudy\MySQL\bin
+		a2.设置环境变量
+			计算机--属性--高级--环境变量--系统变量--Path中添加
+			;D:\phpStudy\MySQL\bin--确定--确定
+			如果在Linux或者unix中需要修改对应的.bashrc或.bash_profile
+
+	b.登录命令
+		mysql
+			登录本地数据库
+		mysql -u root -p
+			管理员登录本地数据库
+		mysql -h 127.0.0.1 -u root -p
+			管理员登录ip为127.0.0.1的数据库
+
+
