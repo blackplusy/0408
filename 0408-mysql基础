@@ -127,6 +127,13 @@
 		非空约束		列中的数据不能为空
 		检查约束 	列中的数据是否满足条件
 		外键(参考)约束 列中的数据依赖于另外一张表中的数据
+		create table 表(
+			列 数据类型 primary key，
+			列 数据类型 unique，
+			列 数据类型 not null，
+			列 数据类型 check(条件),
+			列 数据类型 references 被参考表(被参考列)
+		);
 		create table emp(
 			id   int         primary key,--主键约束
 			name char(10)    unique,     --唯一约束
@@ -145,5 +152,72 @@
 			ddinfo char(10),
 			khid   int references kh(khid)
 			);
+
+建表测试.jpg
+	create table 同学(
+		学号  char(6) primary key,
+		姓名  char(10) not null,
+		性别  char(6) check(性别='男' or 性别='女'),
+		年龄  int not null,
+		民族  char(20) default '汉' not null,
+		身份证号 char(40) unique,
+		宿舍号   char(6) references 宿舍(宿舍号)
+	);
+	create table 宿舍(
+		宿舍号  char(6) primary key,
+		宿舍电话  int check(宿舍电话>=6330000 and 宿舍电话<=6339999)
+		);
+
+
+9.SQL的分类
+	SQL:结构化查询语言
+	DDL:数据库定义语言  create alter drop truncate
+	DML:数据库操作语言  insert update delete
+	DCL:数据库控制语言  grant revoke
+	DQL:数据库查询语言  select
+
+10.数据的新增
+	字符类型数据需要加单引号
+	日期类型数据需要加单引号
+	数字类型数据直接使用
+	a.向表中所有列新增数据
+	注意：列的数据类型必须和值的数据类型一致，顺序要一致
+	语法:insert into 表 values(值1,值2.....);
+	向user1表中新增数据名字simida,age是18，生日2000-01-01
+	b.向表中指定列新增数据
+	语法：insert into 表(列1,列2....) values(值1,值2....);
+	向user1表中新增数据，名字ladeng,年龄25
+	insert into user1(ename,age) values('ladeng',25);
+	c.野路子
+	insert into user1(ename,age) values('gaga',20),('memeda',30),('oba~',40);
+11.数据的修改
+	字符类型数据需要加单引号
+	日期类型数据需要加单引号
+	数字类型数据直接使用
+	语法:update 表 set 列=值 where 条件;
+	注意：如果增加where条件修改的是指定行的列，如果不加where条件，修改的是整个表中的列
+	修改user1中名字为simida的age为100
+	update user1 set age=100 where ename='simida';
+	修改user1中age为0
+	update user1 set age=0;
+12.数据的删除
+	delete		可以删除指定数据，DML，删除数据可以找回
+	truncate    只能删除表中所有数据，DDL，删除数据无法找回
+	a.delete语法
+		delete from 表 where 条件;
+		如果增加where条件，删除的是指定数据
+		删除user1表中名字叫simida的人的所有信息
+		delete from user1 where ename='simida';
+		删除user1表中所有数据
+		delete from user1;
+	b.truncate语法
+		truncate table 表;
+		删除user1表中所有数据
+		truncate table user1;
+		
+
+
+
+
 
 
