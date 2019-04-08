@@ -22,7 +22,7 @@
 	数据库是有2部分组成:数据库软件、数据库数据
 	常说的数据库是数据库数据
 	数据库是由表组成
-	表是有数据组成
+	表是由数据组成
 5.mysql的服务
 	mysql   mysql的客户端服务
 	mysqld 	mysql的主服务
@@ -49,6 +49,7 @@
 		a2.设置环境变量
 			计算机--属性--高级--环境变量--系统变量--Path中添加
 			;D:\phpStudy\MySQL\bin--确定--确定
+			注意：设置环境变量后，我们重新打开命令提示符
 			如果在Linux或者unix中需要修改对应的.bashrc或.bash_profile
 
 	b.登录命令
@@ -58,5 +59,49 @@
 			管理员登录本地数据库
 		mysql -h 127.0.0.1 -u root -p
 			管理员登录ip为127.0.0.1的数据库
+7.基础命令
+	show databases;
+		查看当前数据库软件中有哪些数据库
+	select database();
+		查看当前年数据库的名字
+	use mysql;
+		设置当前数据库为mysql
+	show tables;
+		查看当前数据库有哪些表
+	select * from user;
+		查看user表中所有数据
+	注意：如果在命令提示符中显示不正常可以在语句后面增加\G
+8.表
+	类似于表格，有行有列有名字，数据类型
+	a.数据类型
+		字符类型 'abc' '123' char varchar
+		数字类型 123 3.14    int float
+		日期类型 1988-01-01  date
+		注意：char是定长，varchar是变长
+		char(10)--6--存储10个
+		varchar(10)--6--存储6个
+	b.表结构的创建
+		语法：create table 表 (
+			列 数据类型，
+			列 数据类型....
+			);
+		需求：创建表商品(goods),商品名称(name) 字符类型 最多10个字符，价格（price） 数字，出厂日期 ddate 日期类型
+			create table goods(
+				name char(10),
+				price int,
+				ddate date
+				);
+		补充：查看表结构信息
+			desc 表名;
+		需求：查看goods表中表结构信息
+			desc goods;
+	c.删除表结构
+		语法：drop table 表名;
+		需求：删除goods表结构
+		drop table goods;
+		
+
+
+
 
 
