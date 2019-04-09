@@ -144,6 +144,39 @@ d.测试数据库
 			avg()    平均值
 			select first_name,lower(first_name) from customer;
 			SELECT AVG(customer_id)+1.0388888,ROUND((AVG(customer_id)+1.0388888),2) FROM customer;
+3.多表查询
+	当一张表无法满足条件时候使用多张表进行查询
+	a.笛卡尔积
+	两张表不做任何关联产生的数据,到时数据量成倍增加,无效数据增加,所以引入连接查询(内联,左联,右联)
+	select * from country;
+	select * from city;
+	select * from city,country;
+	b.内联查询
+	语法:
+	select 列 from 表1 inner join 表2 on 表1.列=表2.列;
+	select 列 from 表1,表2 where 表1.列=表2.列;
+	关联列判断方法:
+	1.名字相同
+	2.作用一样
+	3.主外键关系
+	例子:查询国家名称为CHINA的城市名称有哪些
+	1.分析列
+		国家名称
+		城市名称
+	2.分析表
+		city city
+		country country
+	3.关联
+		select * from city,country
+		where city.country_id=country.country_id;
+	4.过滤
+		select city from city,country
+		where city.country_id=country.country_id
+		and country='CHINA';
+		
+
+
+
 
 
 
