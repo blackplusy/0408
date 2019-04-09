@@ -185,8 +185,30 @@ d.测试数据库
 
 问题:
 	查询以C开头的国家有哪些城市?
-	查询名字为MARY的所在城市名称?
-	查询名字为MARY的所在国家名称?
+		1.国家\城市
+		2.country\city
+		3.
+		select c.city from city c,country co
+		where c.country_id=co.country_id
+		and co.country like 'C%';
+	查询名字为MARY的所在城市?
+		1.city\customer
+		2.city\address\customer
+		3.
+		select c.city from city c,address a,customer cu
+		where c.city_id=a.city_id
+		and a.address_id=cu.address_id
+		and cu.first_name='MARY';
+	查询名字为MARY的所在国家?
+		1.customer\country
+		2.customer\country\address\city
+		3.
+		select co.country from country co,city c,address a,customer cu
+		where co.country_id=c.country_id
+		and   c.city_id=a.city_id
+		and   a.address_id=cu.address_id
+		and cu.first_name='MARY';
+
 
 
 
