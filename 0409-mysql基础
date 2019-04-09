@@ -65,5 +65,52 @@ d.测试数据库
 	use sakila;
 	show tables;
 	select * from city;
-	
+2.mysql的数据查询
+	a.查询分类：
+		简单查询(单表)
+		多表查询(连接)
+		分组查询
+		子查询
+	b.简单查询
+		语法:select 列 from 表 where 条件;
+		查询可以查询指定行，查询指定列，查询指定行的列
+		查询客户表中名字叫MARY的人的所有信息
+			select * from customer where first_name='MARY';
+		查询客户表中所有的名字和姓氏
+			select first_name,last_name from customer;
+		查询客户表中名字是LINDA的人的姓氏
+			select last_name from customer where first_name='LINDA';
+		注意：select后面from前面是和列相关的，where条件是和行相关的
+		*代表所有列
+		查询city表中所有数据
+			select * from city;
+			SELECT city_id,city,country_id,last_update FROM city;
+	c.where条件(子句)
+		c1.比较
+			>
+			<
+			=
+			>=
+			<=
+			!=
+			<>
+		查询客户表中customer_id大于30的人的所有信息
+		select * from customer where customer_id>30;
+		查询客户表中名字不是ANNA的所有信息
+		select * from customer where first_name<>'ANNA';
+		c2.关系(逻辑)
+			and  同时满足
+			or   满足一个条件即可
+			not  不满足条件
+		查询客户表中customer_id大于等于30并且小于等于40的人的所有信息
+		select * from customer where customer_id>=30 and customer_id<=40;
+		查询客户表中客户名字是MARY或者HEYGOR的姓氏
+		select last_name from customer where first_name='MARY' or first_name='HEYGOR';
+		
+
+
+
+
+
+
 
