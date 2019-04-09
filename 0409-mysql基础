@@ -173,7 +173,23 @@ d.测试数据库
 		select city from city,country
 		where city.country_id=country.country_id
 		and country='CHINA';
-		
+	c.查询城市名称为Shenzhen的国家名称,country_id
+	3.关联
+		select * from city c,country co
+		where c.country_id=co.country_id;
+	4.过滤
+		select co.country,co.country_id 
+		from city c,country co
+		where c.country_id=co.country_id
+		and c.city='Shenzhen';
+
+问题:
+	查询以C开头的国家有哪些城市?
+	查询名字为MARY的所在城市?
+	查询名字为MARY的所在国家?
+
+
+
 
 
 
