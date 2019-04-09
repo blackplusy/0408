@@ -95,18 +95,60 @@ d.测试数据库
 			!=
 			<>
 		查询客户表中customer_id大于30的人的所有信息
-		select * from customer where customer_id>30;
+			select * from customer where customer_id>30;
 		查询客户表中名字不是ANNA的所有信息
-		select * from customer where first_name<>'ANNA';
+			select * from customer where first_name<>'ANNA';
 		c2.关系(逻辑)
 			and  同时满足
 			or   满足一个条件即可
 			not  不满足条件
 		查询客户表中customer_id大于等于30并且小于等于40的人的所有信息
-		select * from customer where customer_id>=30 and customer_id<=40;
+			select * from customer where customer_id>=30 and customer_id<=40;
 		查询客户表中客户名字是MARY或者HEYGOR的姓氏
-		select last_name from customer where first_name='MARY' or first_name='HEYGOR';
-		
+			select last_name from customer where first_name='MARY' or first_name='HEYGOR';
+		c3.区间(范围)
+			between...and...
+			区间是包括两个端点,前面小后面大
+		查询客户表中customer_id范围30和40之间的所有信息
+			select * from customer where customer_id between 30 and 40;
+		c4.模糊查询
+			当信息不完整时候使用的,通常是和字符类型一起使用
+			like
+			_ 	一个字符
+			%	任意个字符
+			查询客户表中名字以M开头的所有信息
+			select * from customer where first_name like 'M%';
+			查询客户表中名字以C结尾的所有信息
+			select * from customer where first_name like '%C';
+			查询客户表中名字是6个字符的所有信息
+			select * from customer where first_name like '______';
+		c5.in(在...里面)
+			或者的关系
+			查询客户表中客户名字是MARY或者HEYGOR的姓氏
+			select last_name from customer where first_name in ('MARY','HEYGOR');
+
+		c6.空值查询(null)
+			null,没有任何数据类型,没有任何值,不能用于比较和运算,查询时候使用is null 或者is not null
+
+			create table goods(
+				ename char(10),
+				price  int
+			);
+			insert into goods values(null,80),('ladeng',90);
+			查询goods表中名字为空的所有信息
+			select * from goods where ename is null;
+		c7.常见函数
+			upper()  大写
+			lower()  小写
+			round()  小数点后保留几位
+			avg()    平均值
+			select first_name,lower(first_name) from customer;
+			SELECT AVG(customer_id)+1.0388888,ROUND((AVG(customer_id)+1.0388888),2) FROM customer;
+
+
+
+
+
 
 
 
