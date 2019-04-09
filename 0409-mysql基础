@@ -1,0 +1,69 @@
+1.常用的数据库软件
+	oracle
+	mysql
+	mongodb
+	redis
+2.mysql服务
+	端口:3306
+	管理员:root
+	tasklist 
+	netstat -an
+3.mysql的登录
+	设置环境变量
+	mysql
+	mysql -u root -p
+	mysql -h 127.0.0.1 -u root -p
+4.mysql常见命令
+	show databases;
+	select database();
+	use test;
+	show tables;
+	select * from user;
+5.mysql的表结构
+	字符   char  varchar
+	数字   int   float
+	日期   date
+	列名:表头,字段
+	create table 表(
+		列  数据类型,
+		列  数据类型
+		....
+	);
+	desc 表名;
+	drop table 表名;
+6.数据的新增修改删除
+	新增语法:
+	所有列
+		insert into 表 values(值1,值2....);
+	指定列
+		insert into 表(列1,列2...) values(值1,值2....);
+	修改语法:
+		update 表 set 列=值 where 条件;
+	删除语法:
+		truncate
+		delete
+
+=================================================
+数据的查询
+1.sakila数据库的导入
+a.下载
+https://dev.mysql.com/doc/index-other.html
+注意:.tgz是linux下的安装包,.zip是win下的安装包
+b.解压压缩包文件
+sakila-schema.sql    表结构数据
+sakila-data.sql      表中数据
+c.导入sakila数据
+	c1.进入到解压后的文件夹
+	c2.地址栏中输入cmd
+	c3.登录mysql数据库
+		mysql -u root -p
+	c4.导入sakila-schema.sql
+		source sakila-schema.sql;
+	c5.导入sakila-data.sql
+		source sakila-data.sql;
+d.测试数据库
+	use sakila;
+	show tables;
+	select * from city;
+	
+
