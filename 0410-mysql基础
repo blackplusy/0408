@@ -48,6 +48,9 @@ select s# from sc where c# in ('C2','C4');
 		名字一样
 		功能一样
 		主外键关系
+SELECT * FROM country co 
+INNER JOIN city c     ON co.`country_id`=c.`country_id`
+INNER JOIN address  a ON c.`city_id`=a.`city_id`;
 
 子查询(嵌套查询)
 一条sql语句的执行依赖于另外一条sql语句的执行结果
@@ -82,14 +85,27 @@ select s# from sc where c# in ('C2','C4');
 delete from achievement where id=(select id from student where name='Betty');
 delete from student where name='Betty';
 
+练习1:
+查询名字为MARY的所在城市名称
+a.查询客户表中满足条件address_id
+	select address_id from customer where first_name='MARY';
+b.查询地址表中address_id为上面查询出来结果的city_id
+	select city_id from address where address_id=(select address_id from customer where first_name='MARY');
+c.查询城市表中满足city_id为上面查询出结果的城市名称
+	select city from city where city_id =(select city_id from address where address_id=(select address_id from customer where first_name='MARY'));
+练习2:
+查询名字为MARY的所在国家?
+a.查询客户表中满足条件address_id
+	select address_id from customer where first_name='MARY';
+b.查询地址表中address_id为上面查询出来结果的city_id
+	select city_id from address where address_id=(select address_id from customer where first_name='MARY');
+c.查询城市表中满足city_id为上面查询出结果的country_id
+	select country_id from city where city_id =(select city_id from address where address_id=(select address_id from customer where first_name='MARY'));
+d.查询国家表中country_id为上面查询出来结果的国家名称
+	select country from country where country_id=(select country_id from city where city_id =(select city_id from address where address_id=(select address_id from customer where first_name='MARY')));
 
 
-问题:
-	查询以C开头的国家有哪些城市?
 
-	查询名字为MARY的所在城市?
-
-	查询名字为MARY的所在国家?
 
 
 
