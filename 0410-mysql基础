@@ -279,5 +279,34 @@ select city,country_id from city group by country_id;  ---baga
 select * from city group  by city;                     ---baga
 查询city表中每个国家id对应多少个城市,要求显示城市数量,国家id?
 select country_id,count(city) from city group by country_id;
+查询每个国家有多少个城市,要求显示国家名称,城市数量?
+select co.country,count(c.city) from city c,country co
+where c.country_id=co.country_id
+group by co.country;
+
+having 分组后过滤(先分组)
+having和where的区别
+	having 分组后过滤,可以直接跟分组函数
+	where  分组前过滤,不能直接跟分组函数
+查询城市数量超过20的国家名称
+select co.country,count(c.city) from city c,country co
+where c.country_id=co.country_id
+group by co.country
+having count(c.city)>20;
+
+select co.country,count(c.city) from city c,country co
+where c.country_id=co.country_id
+and count(c.city)>20;
+
+通常每后面跟的就是分组条件
+
+
+
+
+
+
+
+
+
 
 
