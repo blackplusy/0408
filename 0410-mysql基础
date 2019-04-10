@@ -84,7 +84,12 @@ delete from student where name='Betty';
 
 
 
+问题:
+	查询以C开头的国家有哪些城市?
 
+	查询名字为MARY的所在城市?
+
+	查询名字为MARY的所在国家?
 
 
 
