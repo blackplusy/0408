@@ -109,4 +109,175 @@ d.查询国家表中country_id为上面查询出来结果的国家名称
 
 
 
+tcp--1.jpg
+select * from test1 where department='计算机系' and place='北京';
+update test1 set department='信息学院' where department='计算机系';
+select t1.no,t1.name,t2.grade,t2.courses from test1 t1,test2 t2 where t1.no=t2.no and t2.grade>75;
+--2.jpg
+select s.name  from student s,achievement a where s.id=a.id and a.mark>85;
+select count(*) from achievement where mark>=90;
+insert into achievement values(7,80);
+update achievement set mark=87 where id=3;
+delete from student where name='Betty';
+delete from achievement where id=6;
+
+--4.jpg
+select s#,grade from sc where c#='C2';
+select sname from s where sname like 'D%';
+select s.s#,s.sname  from s,sc,c where s.s#=sc.s# and sc.c#=c.c# and c.cname='Maths';
+select s# from sc where c# in ('C2','C4');
+
+
+===========================================================================
+多表查询
+	a.笛卡尔积
+	b.内联查询
+		select 列 from 表1,表2 where 表1.列=表2.列;
+		select 列 from 表1 inner join 表2 on 表1.列=表2.列;
+	c.左联查询\右联查询
+		c1.左联查询(左表中数据都有)
+		语法:select 列 from 左表 left join 右表 on 左表.列=右表.列;
+		左联查询出来的结果是:内联查询结果+左表中有右表中没有的右表显示为空
+		create table a(
+			a int
+		);
+		insert into a values(1),(2),(3);
+		create table b(
+			a  int,
+			b  char(10)
+		);
+		insert into b values(1,'a'),(2,'b'),(4,'d');
+		SELECT * FROM a LEFT JOIN b ON a.a=b.a;
+		c2.右联查询(右表中数据都有)
+		语法:select 列 from 左表 right join 右表 on 左表.列=右表.列;
+		右联查询出来结果是:内联查询结果+右表中有,左表中没有左表显示为空
+		select * from b right join a on a.a=b.a;
+
+复习多表查询
+	如果涉及到多表查询,一定先进行关联
+	关联列判断
+		名字一样
+		功能一样
+		主外键关系
+SELECT * FROM country co 
+INNER JOIN city c     ON co.`country_id`=c.`country_id`
+INNER JOIN address  a ON c.`city_id`=a.`city_id`;
+
+子查询(嵌套查询)
+一条sql语句的执行依赖于另外一条sql语句的执行结果
+子查询不仅仅可以用于查询,也可以应用于数据新增,修改,删
+除
+某些情况下可以和多表查询互换
+查询国家名称是China的城市名称
+1.分析列
+	国家名称
+	城市名称
+2.分析表
+	city
+	country
+3.拆分
+	查询国家表中满足条件的country_id
+		select country_id from country where country='China';
+	查询城市表中country_id为上面查询出来结果的城市名称
+		select city from city where country_id=(select country_id from country where country='China');
+子查询分为
+	单行子查询:查询子句返回的结果是1行,可以使用=或者in
+	多行子查询:查询子句返回的结果是多行,只能用in
+查询国家名称以C开头的城市名称有哪些?
+	查询国家表中满足条件的country_id
+		select country_id from country where country like 'C%';
+	查询城市表中country_id为上面查询出来结果的城市名称
+		select city from city where country_id in (select country_id from country where country like 'C%');
+
+--2.jpg
+3.insert into achievement values((select id from student where name='Robert'),80);
+4.update achievement set mark=87 where id=(select id from student where name='Rose');
+5.
+delete from achievement where id=(select id from student where name='Betty');
+delete from student where name='Betty';
+
+练习1:
+查询名字为MARY的所在城市名称
+a.查询客户表中满足条件address_id
+	select address_id from customer where first_name='MARY';
+b.查询地址表中address_id为上面查询出来结果的city_id
+	select city_id from address where address_id=(select address_id from customer where first_name='MARY');
+c.查询城市表中满足city_id为上面查询出结果的城市名称
+	select city from city where city_id =(select city_id from address where address_id=(select address_id from customer where first_name='MARY'));
+练习2:
+查询名字为MARY的所在国家?
+a.查询客户表中满足条件address_id
+	select address_id from customer where first_name='MARY';
+b.查询地址表中address_id为上面查询出来结果的city_id
+	select city_id from address where address_id=(select address_id from customer where first_name='MARY');
+c.查询城市表中满足city_id为上面查询出结果的country_id
+	select country_id from city where city_id =(select city_id from address where address_id=(select address_id from customer where first_name='MARY'));
+d.查询国家表中country_id为上面查询出来结果的国家名称
+	select country from country where country_id=(select country_id from city where city_id =(select city_id from address where address_id=(select address_id from customer where first_name='MARY')));
+
+
+
+--7.jpg
+1.
+a.查询c表中满足条件的c#
+select c# from c where cn='税收基础';
+b.查询sc表中c#为上面查询出来结果的s#
+select s# from sc where c# in (select c# from c where cn='税收基础');
+c.查询s表中s#为上面查询出来结果的学号和姓名
+select s#,sn from s where s# in (select s# from sc where c# in (select c# from c where cn='税收基础'));
+2.
+a.查询sc表中满足条件的s#
+select s# from sc where c#='C2';
+b.查询s表中满足s#为上面查询出来结果的sn,sd
+select sn,sd from s where s# in (select s# from sc where c#='C2');
+3.
+select sn,sd from s where s# in (select s# from sc where c#!='C5');
+
+
+
+--5.bmp
+1.
+select avg(english) from mark;
+2.
+select m.math,cu.name,cu.address,cu.telno
+from cust cu,mark m
+where cu.studentno=m.studentno
+and m.studentno in (11,22,33,44,55);
+
+tcp连接的3次握手
+电脑A      电脑B
+1.主机a发送同步信号给主机b,我可以和你同步么?
+2.主机b发送同意信号给主机a,同时会发送同步信号给主机a,我可以和你同步么?
+3.主机a发送同意信号给主机b
+
+你瞅啥?
+瞅你咋地?
+来咱俩唠唠?
+
+分组查询
+按照某种条件进行归类
+1.分组函数
+分组函数通常和分组一起使用,也可以单独使用
+avg()    平均值
+sum()	 求和
+count()  计数
+max()    最大
+min()	 最小
+查询客户表中最大的customer_id是多少?最小customer_id是多少?
+select max(customer_id),min(customer_id) from customer;
+查询客户表中最大客户id的客户名字是?
+select max(customer_id) from customer;
+select first_name from customer where customer_id=(select max(customer_id) from customer);
+2.分组查询
+语法:select 列 from 表
+		where 条件
+			group by 分组条件
+				having 分组后过滤条件
+数据库中不允许出现类似于excel中的合并单元格操作,不能出现一张表中一对多的情况
+select city from city group by city;                   ---oh yeah
+select city,country_id from city group by country_id;  ---baga
+select * from city group  by city;                     ---baga
+查询city表中每个国家id对应多少个城市,要求显示城市数量,国家id?
+select country_id,count(city) from city group by country_id;
+
 
