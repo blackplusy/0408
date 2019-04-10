@@ -300,11 +300,66 @@ and count(c.city)>20;
 
 通常每后面跟的就是分组条件
 
+
+
 查询每个城市有多少个客户,要求显示城市名称,客户数量
 
+select c.city,count(*) from city c,address a,customer cu
+where c.city_id=a.city_id
+and a.address_id=cu.address_id
+group by c.city;
+
 查询C开头的国家,每个国家有多少个城市
+select co.country,count(c.city) from city c,country co
+where c.country_id=co.country_id
+and co.country like 'C%'
+group by co.country;
 
 查询客户数量超过2的城市名称
+select c.city from city c,address a,customer cu
+where c.city_id=a.city_id
+and a.address_id=cu.address_id
+group by c.city
+having count(*)>2;
+
+
+
+排序和分页
+1.排序
+按照某个属性进行数据排列
+顺序(从小到大)
+order by 列;
+order by 列 asc;
+逆序(从大到小)
+order by 列 desc;
+语法:
+select 列 from 表 where 条件 group by 分组条件 having 分组后过滤条件 order by 排序条件
+查询city表中所有数据,按照city_id倒序排列
+select * from city order by city_id desc;
+查询country表中国家名称以C开头的数据按照country_id顺序排列
+select * from country where country like 'C%' order by country_id;
+双排序:先按前面的排序,前面内容相同情况下再按后面进行排序
+select * from city order by country_id,city_id desc;
+
+2.分页查询(limit)
+类似于我们的邮箱
+查询city表中前10行数据
+select * from city limit 10;
+查询city表中11-15行数据
+select * from city limit 10,5;
+
+
+查询语法:
+select 列 from 表
+	where 条件
+		group by 分组条件
+			having 分组后过滤条件
+				order by 排序条件
+					limit 限制条件;
+
+
+
+
 
 
 
