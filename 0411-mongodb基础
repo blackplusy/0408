@@ -1,0 +1,119 @@
+--QQ笔试
+select * from emp where deptno=30;
+select ename,empno,deptno from emp;
+select * from emp where comm>sal;
+select * from emp where comm>sal*0.6
+
+--2.png
+select count(*) from table1;
+select t2.家庭住址 from table1 t1,table2 t2
+where t1.学生id=t2.学生id
+and t1.姓名 like '张%'
+and t1.性别='女'
+order by t1.姓名;
+
+--3.png
+select * from dt_pay where salary>(select avg(salary) from dt_pay);
+select * from dt_pay;
+truncate table dt_pay;
+
+
+--4.png
+1.select xm,zkzh from tb_student where score>0 and score<5;
+2.select * from tb_student where xm='张三' and score=5;
+3.
+select c.成绩表 from 学生表 x,成绩表 c
+where x.准考证号=c.准考证号
+and x.年龄 between 20 and 35
+order by c.准考证号 desc;
+======================================================================
+1.非关系型数据库
+	mongodb
+	redis
+	cassandra
+
+2.mongodb的安装和配置
+	a.下载地址
+	https://www.mongodb.com/download-center/community
+	操作系统位数
+		32位   x86  i386 i686
+		64位   x86_64   x64
+	b.安装
+		傻瓜安装(下一步)
+		注意：安装时候compass不要选择安装(取消打勾)
+	c.测试
+		c1.mongodb的服务
+			mongod  mongodb的主服务
+			mongo   mongod的客户端服务
+		c2.mongodb的端口
+			默认：27017
+		c3.检查服务和端口
+			win:
+				tasklist | find "mongod"  查看mongodb的进程
+					tasklist  查看系统中所有进程
+					|         管道：前面的输出作为后面的输入
+					find      搜索
+				netstat -an |  find "27017"
+					netstat -an 查看系统中所有开放的端口
+3.mongodb的服务启动
+	a.启动方式
+		a1.进入到mongodb的bin文件夹
+		a2.设置环境变量
+			计算机--属性--高级--环境变量--系统变量--Path中添加
+			;C:\Program Files\MongoDB\Server\4.0\bin
+			确定--确定--确定
+	b.启动命令
+		mongod --dbapth d:\data
+		mongod --dbapth d:\data --logpath d:\data\mongo.log
+		注意：  
+			dbpath为数据存放位置(路径)
+			logpath日志存放位置(位置)
+4.mongodb登录(命令提示符：win+r)
+	mongo
+		登录本地test数据库
+	mongo 127.0.0.1/admin
+		登录IP为127.0.0.1的admin数据库
+	mongo 127.0.0.1:27017/admin
+		登录IP为127.0.0.1的端口为27017的admin数据库
+		
+			
+			
+		
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
