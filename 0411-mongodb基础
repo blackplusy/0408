@@ -63,8 +63,8 @@ order by c.准考证号 desc;
 			;C:\Program Files\MongoDB\Server\4.0\bin
 			确定--确定--确定
 	b.启动命令
-		mongod --dbapth d:\data
-		mongod --dbapth d:\data --logpath d:\data\mongo.log
+		mongod --dbpath d:\data
+		mongod --dbpath d:\data --logpath d:\data\mongo.log
 		注意：  
 			dbpath为数据存放位置(路径)
 			logpath日志存放位置(位置)
