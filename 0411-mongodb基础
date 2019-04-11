@@ -75,6 +75,51 @@ order by c.准考证号 desc;
 		登录IP为127.0.0.1的admin数据库
 	mongo 127.0.0.1:27017/admin
 		登录IP为127.0.0.1的端口为27017的admin数据库
+5.常用命令
+	mongodb    mysql
+	数据库      数据库
+	集合        表
+	文档        数据
+	常说的数据库是数据库数据
+	mongodb数据库是由集合组成
+	mongodb的集合是由文档组成
+	show databases
+	show dbs
+		查看当前有哪些数据库
+	db
+		查看当前数据库的名字
+	use local
+		当前数据库切换为local
+	show tables
+	show collections
+		查看当前数据库中有哪些集合
+	db.startup_log.find()
+		查看startup_log集合中所有文档
+6.CURD(增删改查)
+	新增文档
+		db.xiyouji.insert({name:'5kong'})
+		xiyouji集合中新增文档name的值是5kong
+	查看文档
+		db.xiyouji.find({name:'8jie'})
+		查看xiyouji集合中name的值是8jie的所有文档
+	修改文档
+		db.xiyouji.update({name:'8jie'},{$set:{name:'wuneng'}})
+		修改xiyouji集合中name为8jie的name设置为wuneng
+	删除文档
+		db.xiyouji.remove({name:'wuneng'})
+		删除xiyouyji集合中name值是wuneng的所有信息
+7.文档的新增
+	新增普通文档
+		db.xiyouji.insert({name:'shasir',age:500,jingli:'dsxsfrygzzl'})
+	新增文档指定_id
+		db.xiyouji.insert({_id:0,name:'niumoking'})
+	新增内嵌文档
+		注意：层数不要超过2层
+		db.xiyouji.insert({name:'5kong',jingli:{kill:500,hit:2}})
+	新增多个文档
+		db.xiyouji.insert([{name:'nezha'},{name:'2dog'},{name:'sweet'}])
+
+
 		
 			
 			
