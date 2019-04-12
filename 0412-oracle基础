@@ -92,7 +92,7 @@ f.用户和权限
 
 	权限
 		CONNECT   	连接数据库权限
-		resrouce    调用数据库资源权限
+		resource    调用数据库资源权限
 		dba         管理员权限
 		当创建一个新的用户的时候我们会给connect和resource权限
 		a.授权
@@ -162,7 +162,7 @@ g.oracle的表结构
 		    sex char(10) check(sex='男' or sex='女')
 		);
 		insert into xs values('a','男');
-		insert into xs values('b','中');\
+		insert into xs values('b','中');
 		e.外键约束
 		被参考表的被参考列一定存在
 		参考列和被参考列数据类型必须一致
@@ -186,6 +186,108 @@ g.oracle的表结构
  	commit		把数据提交到数据库中，除非人为修改否则不会变化
  	rollback    把数据库状态退回到最后一次提交的状态
  	注意：DML语句会触发事务的开始
+ 	DML：新增  修改  删除(insert update delete)
+ i.数据的新增
+ 	字符类型加单引号
+ 	数字类型直接使用
+ 	日期类型加to_date函数
+ 	语法：insert into 表 values(值1，值2....)；
+ 	     insert into 表(列1，列2) values(值1，值2)；
+ 	创建学生表(st),学生名字(name)字符类型，生日日期类型，年龄 数字类型
+ 	create table st(
+ 		name char(20),
+ 		birthday date,
+ 		age number
+ 	);
+ 	向st表中新增数据，名字，gaga，生日当前日期，年龄18
+	insert into st values('gaga',sysdate,18);
+	向st表中新增数据，名字，ladeng，生日 2000-01-01
+	insert into st(name,birthday) values('ladeng',to_date('2000-01-01','YYYY-MM-DD'));
+j.数据的修改
+	语法：update 表 set 列=值 where 条件;
+	修改st表中名字为gaga的年龄为80
+	update st set age=80 where name='gaga';
+	commit;
+	如果不加where条件修改的是整个列的数据、
+	修改名字是ladeng的名字修改为o8ma,年龄修改为200
+	update st set name='08ma',age=200 where name='ladeng';
+	commit;
+k.数据的删除
+	注意：数据删除后表结构仍然存在
+	注意：自增序列初始化使用truncate
+	delete语法:
+	delete 表 where 条件;
+	删除st表中名字为gaga的数据
+	delete st where name='gaga';
+	commit;
+	truncate语法：
+	truncate table 表;
+	删除st表中所有数据
+	truncate table st;
+l.数据查询
+	select 列 from 表 where 条件
+		group by 分组条件
+			having 分组后过滤条件
+				order by 排序条件；
+	a.简单查询
+		select * from emp;
+		select * from emp where ename='SCOTT';
+		select sal from emp where ename='SCOTT';
+	b.where子句
+		比较
+			>
+			<
+			=
+			>=
+			<=
+			<>
+			!=
+		查询emp表中工资大于2000的所有信息
+		select * from emp where sal>2000;
+		查询emp表中名字不是SCOTT的人的名字
+		select ename from emp where ename!='SCOTT';
+		关系
+			and
+			or
+			not
+		查询emp表中名字是KING或者ALLEN的所有信息
+		select * from emp where ename='KING' or ename='ALLEN';
+		区间
+			between...and...
+		查询emp表中公司范围800和1600之间所有信息
+		select * from emp where sal between 800 and 1600;
+		模糊查询
+			like
+			_
+			%
+		查询emp表中名字S开头的所有数据
+		select * from emp where ename like'S%';
+		空值查询
+		空值：没有任何数据类型，没有任何的值，不能用于比较和运算，查询时候使用is null或者is not null
+			查询emp表中佣金为空的所有数据
+			select * from emp where comm is null;
+			补充：nvl(判断数据是否为空的列，如果为空显示成什么)
+			查询emp表中名字和佣金，佣金如果为空，显示0
+			select ename,nvl(comm,0) from emp;
+		in 在...里面(不是范围) 
+			查询emp表中名字是KING或者ALLEN的所有信息
+			select * from emp where ename in ('KING','ALLEN');
+		常用的函数
+			upper    大写
+			lower 	 小写
+			round    小数点后保留几位
+			initcap  首字母大写
+		select ename,lower(ename),initcap(ename) from emp;
+
+
+
+
+
+
+
+
+
+
 
 
 
