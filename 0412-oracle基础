@@ -1,0 +1,106 @@
+1.oracle基础
+a.oracle的版本
+	8i
+	9i            i:internet
+	10g
+	11g           g:grid
+	12c   		  c:cloud
+b.oracle的管理工具
+	sqlplus                命令界面
+	isqlplus               
+	em  				   企业管理器
+	pl/sql developer       开发用(win)
+	sql developer          oracle官方自带
+	toad
+	navicat
+c.oracle数据库的安装
+	测试：oracle10g
+	开发：oracle11g(client不要)
+	1、解压database压缩包
+	2.关闭电脑中的vmware、mongodb、mysql服务
+		注意：计算机--管理--服务和应用程序--服务
+		启动类型：禁用，服务状态：停止
+	3.进入到解压后的database文件夹中
+	4.右键setup.exe--兼容性疑难解答--启动程序
+	注意：密码不要以数字开头
+d.oracle的架构
+	c---------/---------s
+	client            server
+	d1.服务端
+		需要启动的服务：
+		oracle主服务    Oracle....ORCL
+		命令方式检查主服务
+			sqlplus / as sysdba           管理员登录本地数据库
+			select status from v$instance 查看当实例状态(open说明正常)
+		补充：
+			开启数据库实例
+				startup;
+			关闭数据库实例
+				shutdown immedate
+		oracle监听服务  Oracle....listener
+		命令方式检查oracle的监听服务
+			lsnrctl status   查看监听的状态
+			lsnrctl start    启动监听服务
+			lsnrctl stop     关闭监听服务
+	d2.客户端
+		客户端配置文件
+		D:\oracle\product\10.2.0\db_1\NETWORK\ADMIN\tnsnames.ora
+		ORCL =                                      #标签
+		  (DESCRIPTION =
+		    (ADDRESS = (PROTOCOL = TCP)(HOST = USER-20180301NK)(PORT = 1521))#协议、主机名(IP)、端口
+		    (CONNECT_DATA =                                             
+		      (SERVER = DEDICATED)
+		      (SERVICE_NAME = orcl)#实例名
+		    )
+		  )
+		测试tns配置文件是否配置正确，是否可以连接oracle数据库
+		tnsping 标签
+		注意：如果是OK说明配置正确
+e.oracle的登录
+	sqlplus / as sysdba
+		管理员登录本地数据库
+	sqlplus scott@orcl
+		scott用户登录标签为orcl的数据库
+	sqlplus sys@orcl as sysdba
+		管理员用户登录标签为orcl的数据，管理员身份
+	注意：oracle2个管理员：sys，system
+f.用户和权限
+	oracle2管理员，管理员在登录系统时候必须使用sysdba角色
+	只有sys和system可以使用sysdba角色
+	角色：权限的集合
+	用户：
+		创建用户(管理员)
+		语法：create user 用户名 identified by 密码;
+		创建用户kobe，密码nba
+		create user kobe identified by nba;
+		修改用户
+		修改密码语法：alter user 用户 identified by 密码;
+		修改kobe用户密码为cba
+		锁定和解锁用户：alter user 用户 identified by 密码 account unlock;
+		解锁scott用户
+		alter user scott identified by tiger account unlock;
+		锁定用户scott
+		alter user scott account lock;
+		删除用户
+		语法：drop user 用户 [cascade];
+		删除kobe用户
+		drop user kobe;
+
+	权限
+		CONNECT   	连接数据库权限
+		resrouce    调用数据库资源权限
+		dba         管理员权限
+		当创建一个新的用户的时候我们会给connect和resource权限
+		a.授权
+		语法：grant 权限 to 用户;
+		赋予kobe用户connect和resource权限
+		grant connect,resource to kobe;
+		b.回收授权
+		语法：revoke 权限 from 用户;
+		取消kobe用户的connect和resource权限
+		revoke connect,resource from kobe;
+
+
+
+
+
