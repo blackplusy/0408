@@ -56,6 +56,7 @@ d.oracle的架构
 		测试tns配置文件是否配置正确，是否可以连接oracle数据库
 		tnsping 标签
 		注意：如果是OK说明配置正确
+		oracle的默认端口是1521
 e.oracle的登录
 	sqlplus / as sysdba
 		管理员登录本地数据库
@@ -68,6 +69,9 @@ f.用户和权限
 	oracle2管理员，管理员在登录系统时候必须使用sysdba角色
 	只有sys和system可以使用sysdba角色
 	角色：权限的集合
+	normal 		普通用户权限
+	sysoper     系统操作员权限
+	sysdba      管理员权限
 	用户：
 		创建用户(管理员)
 		语法：create user 用户名 identified by 密码;
@@ -99,6 +103,101 @@ f.用户和权限
 		语法：revoke 权限 from 用户;
 		取消kobe用户的connect和resource权限
 		revoke connect,resource from kobe;
+
+怎样连接其他人数据库
+	heygor---------------------------------袁剑
+                                          192.168.6.205
+                                          主服务
+                                          监听服务
+    tns配置
+    IP：192.168.6.205
+    协议：TCP
+    端口：1521
+    实例：orcl
+	1.确定目标IP地址(你要连接哪个IP地址)
+	2.确定目标的主服务和监听必须启动
+	3.tns配置
+	4.测试tns是否可以ping通
+	5.登录
+		sqlplus kobe/nba@yj
+		sqlplus sys@yj as sysdba
+
+
+g.oracle的表结构
+	1.oracle的常用数据类型
+		字符  char varchar varchar2
+		数字  number int
+		日期  date
+		语法：create table 表(
+			列 数据类型 约束，
+			列 数据类型 约束
+		)；
+	2.常见约束
+		主键        列中的数据唯一，每张表中只有一个主键，非空
+		唯一        列中数据唯一，一张表可以有多个，可以为空
+		非空        列中的数据不能为空
+		检查        列中的数据是否满足条件
+		外键(参考)  列中的数据依赖于另外一张表中的列
+		a.主键约束
+		创建表bank，流水号(bid)主键约束，业务人员名字（name） 字符类型
+		create table bank(
+			bid number primary key,
+			name char(20)
+			);
+		insert into bank values(1,'a')
+		insert into bank values(1,'b')
+		b.唯一约束
+		c.非空约束
+		创建表student，学生名字name 字符类型，不能为空，年龄 age 数字类型
+		create table student(
+			name char(10) not null,
+			age number
+		);
+		insert into student values('a',18);
+		insert into student(age) values(20);
+		d.检查约束
+		创建表xs，名字 字符类型，性别 字符类型只能是男或者女
+		create table xs(
+		    name char(10),
+		    sex char(10) check(sex='男' or sex='女')
+		);
+		insert into xs values('a','男');
+		insert into xs values('b','中');\
+		e.外键约束
+		被参考表的被参考列一定存在
+		参考列和被参考列数据类型必须一致
+		被参考列一定是主键约束
+		create table kh(
+			khid number primary key,
+			khinfo char(10)
+		);
+        insert into kh values(1,'a');
+        insert into kh values(2,'b');
+
+		create table dd(
+			khid number references kh(khid),
+			ddinfo char(10)
+		);
+        insert into dd values(1,'xxx');
+        insert into dd values(3,'xxx');
+ h.事务
+ 	一件事有开始就必须有结束
+ 	heygor----bank----大佬们
+ 	commit		把数据提交到数据库中，除非人为修改否则不会变化
+ 	rollback    把数据库状态退回到最后一次提交的状态
+ 	注意：DML语句会触发事务的开始
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
