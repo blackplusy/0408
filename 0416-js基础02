@@ -13,6 +13,13 @@
 	sin  返回数的正弦
 	min  返回给定数字中最小值
 	max  返回给定数字中最大值
-	
 
-
+3.字符串对象
+	封装了和字符串相关的特性,来处理字符串,可以对字符串进行剪切,合并,替换等操作
+	调用string对象的方法或者属性
+	string([val])
+	注意:val是可选项
+	substring
+	http://www.w3school.com.cn/jsref/jsref_substr.asp
+	slice
+	http://www.w3school.com.cn/jsref/jsref_slice_array.asp
