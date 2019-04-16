@@ -23,3 +23,34 @@
 	http://www.w3school.com.cn/jsref/jsref_substr.asp
 	slice
 	http://www.w3school.com.cn/jsref/jsref_slice_array.asp
+	split
+	http://www.w3school.com.cn/js/jsref_split.asp
+4.数组对象
+	js中基本的数据类型,封装了和数组相关的方法和属性
+	房间1    房间2     房间3    房间4
+	班长     范冰冰    李冰冰   冰冰冰
+	创建数组的方式
+	1.通过new运算符调用Array对象构造函数
+		var a=new Array();
+	2.通过给构造函数传递元素作为参数(创建带指定元素的数组)
+		var a=new Arrary(10,20,30,'gaga');
+	3.直接将元素放入[]中,通过逗号分隔开
+		var a=[2,3,4,5];
+	4.创建指定常的数组(创建数组指定元素个数)
+		var a=new Array(3);
+	注意:放在数组后面的中括号中的数字就是所谓的索引,从0开始,可以通过索引来取出我需要的数据,从左向右从0开始
+=================================================================
+其他数据类型
+1.函数
+函数的角色2种,一种是数据类型方面,另外一种是程序设计方面
+定义函数的方式
+	function typename(arg)
+	{
+		this.arg=arg;
+	}
+2.空值
+之前所说数据类型都有自己内容,编程中还有一种:什么都没有(null)
+注意:一个=代表赋值,两个=代表比较,===代表对象比较
+3.不确定的数据类型
+undefined表示一个变量什么都没有得到,连空都没有
+在应用里面null和undefined实际意义是等效的
