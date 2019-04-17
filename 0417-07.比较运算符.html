@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<!-- 设置一个文件输入框和一个按钮,与用户进行交互 -->
+	<font color="skyblue">50点卡信息为4.5,请确认购买</font>             
+	<input id="text1" type="text" style="width:20px;height:20px" />张    <!--  普通文本框 -->
+	<input id="button1" type="button" value="确认支付" onclick="return button1_onclick()" />   <!-- 按钮 -->
+	<script type="text/javascript">
+		function button1_onclick()                                  //按钮处理函数
+		{
+			if ( ( text1.value<1 ) || isNaN( text1.value ) )        //输入数字小于1或者不是数字,清除文本框内容
+			{
+				alert("您的输入有误");
+				text1.value="";                                    //清除文本框内容
+			}
+			else
+			{
+				alert("您应当支付:"+text1.value*4.5+"元");         //输入合法的统计数据
+			}
+		}
+	</script>
+</body>
+</html>
