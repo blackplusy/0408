@@ -1,0 +1,73 @@
+1.常见的软件
+	微信        c/s  b/s
+	QQ          c/s 
+	陌陌        c/s  
+	抖音        c/s
+	农药、吃鸡   c/s 
+	高德        b/s  c/s
+	百度云       b/s  c/s
+	爱奇艺       b/s  c/s
+常见的软件架构
+a.单机软件
+	不需要网络就可以执行的应用程序
+	hackercon
+	defcon 
+b.b/s架构软件
+	b:浏览器
+		  IE            百度 360 傲游 搜狗   edge
+		  firefox     	测试使用居多，插件比较多
+		  chrome        开发使用居多，速度快
+		  safari        苹果
+	s：服务器
+		  性能非常牛逼的电脑
+c.c/s架构软件
+	c:客户端
+		pc端     笔记本电脑 台式 服务器
+		移动端   手机 ipad 移动终端
+	s:服务器
+			性能非常牛逼的电脑
+2.前端和后端
+	b/s架构前端：
+		html  静态页面       骨架
+		css   样式表         服装
+		js    javascript    行为  (前端开发语言)
+		ui    美工
+	b/s架构后端：
+		操作系统
+			unix	mac  ios  aix
+			linux
+				redhat  centos
+				suse    opensuse
+				ubuntu  kali  
+				红旗    麒麟
+				redstar
+			windows
+				server
+					win03  08  12  16
+				desktop
+					win7 winxp win10 win8
+		web服务器
+			apache  不支持java
+			nginx   轻量级web服务器(反向代理、负载均衡)
+			tomcat  java
+			iis 	微软
+		数据库服务器
+			关系型数据库
+				informix IBM+HP 军、政、运、银
+				db2      IBM    军、政、运、银
+				oracle   甲骨文  中大型企业
+				mysql    甲骨文  互联网公司
+				sqlserver  微软 
+			非关系型数据库
+				mongodb	  大数据、爬虫
+				redis     缓存、验证、消息队列
+				cassandra facebook 
+3.常见环境搭配
+	操作系统       web服务器        数据库服务器
+	win             iis            sqlserver、access
+	               apache          mysql
+	               tomcat          mysql、oracle
+	linux          apache          mysql               (LAMP)
+				   nginx           mysql               (LNMP)
+				   tomcat          mysql、oracle
+
